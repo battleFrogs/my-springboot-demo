@@ -60,15 +60,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     public BCryptPasswordEncoder bCryptPasswordEncoder(){
         return new BCryptPasswordEncoder();
     }
-//    /**
-//     * 注入自定义PermissionEvaluator
-//     */
-//    @Bean
-//    public DefaultWebSecurityExpressionHandler userSecurityExpressionHandler(){
-//        DefaultWebSecurityExpressionHandler handler = new DefaultWebSecurityExpressionHandler();
-//        handler.setPermissionEvaluator(new UserPermissionEvaluator());
-//        return handler;
-//    }
+    /**
+     * 注入自定义PermissionEvaluator
+     */
+    @Bean
+    public DefaultWebSecurityExpressionHandler userSecurityExpressionHandler(){
+        DefaultWebSecurityExpressionHandler handler = new DefaultWebSecurityExpressionHandler();
+        handler.setPermissionEvaluator(new UserPermissionEvaluator());
+        return handler;
+    }
 
     /**
      * 配置登录验证逻辑

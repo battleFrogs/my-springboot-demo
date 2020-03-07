@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gjc.dao.single.AuthDOMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.gjc.entity.AuthDO">
+        <id column="auth_id" property="authId" />
+        <result column="name" property="name" />
+        <result column="permission" property="permission" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        auth_id, name, permission
+    </sql>
+
+    <select id="selectSysMenuByUserId" resultMap="BaseResultMap" resultType="com.gjc.entity.AuthDO">
+        SELECT a.*
+        from auth a
+        inner join role_auth ra on a.auth_id = ra.auth_id
+        where exists (select 1 from user_role ur where ur.role_id = ra.role_id and ur.user_id = #{userId})
+        group by a.auth_id
+    </select>
+
+</mapper>

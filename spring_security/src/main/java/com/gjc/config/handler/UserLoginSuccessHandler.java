@@ -1,5 +1,8 @@
 package com.gjc.config.handler;
 
+import com.gjc.config.JWTConfig;
+import com.gjc.config.entity.SelfUserEntity;
+import com.gjc.utils.JWTTokenUtil;
 import com.gjc.utils.ResultUtils;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
@@ -19,15 +22,15 @@ public class UserLoginSuccessHandler implements AuthenticationSuccessHandler {
      */
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication){
-//        // 组装JWT
-//        SelfUserEntity selfUserEntity =  (SelfUserEntity) authentication.getPrincipal();
-//        String token = JWTTokenUtil.createAccessToken(selfUserEntity);
-//        token = JWTConfig.tokenPrefix + token;
+        // 组装JWT
+        SelfUserEntity selfUserEntity =  (SelfUserEntity) authentication.getPrincipal();
+        String token = JWTTokenUtil.createAccessToken(selfUserEntity);
+        token = JWTConfig.tokenPrefix + token;
         // 封装返回参数
         Map<String,Object> resultData = new HashMap<>();
         resultData.put("code","200");
         resultData.put("msg", "登录成功");
-//        resultData.put("token",token);
+        resultData.put("token",token);
         ResultUtils.responseJson(response,resultData);
     }
 }

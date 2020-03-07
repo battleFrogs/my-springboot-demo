@@ -1,5 +1,6 @@
 package com.gjc.config;
 
+import com.gjc.config.filter.JWTAuthenticationTokenFilter;
 import com.gjc.config.handler.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -60,15 +61,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     public BCryptPasswordEncoder bCryptPasswordEncoder(){
         return new BCryptPasswordEncoder();
     }
-//    /**
-//     * 注入自定义PermissionEvaluator
-//     */
-//    @Bean
-//    public DefaultWebSecurityExpressionHandler userSecurityExpressionHandler(){
-//        DefaultWebSecurityExpressionHandler handler = new DefaultWebSecurityExpressionHandler();
-//        handler.setPermissionEvaluator(new UserPermissionEvaluator());
-//        return handler;
-//    }
+    /**
+     * 注入自定义PermissionEvaluator
+     */
+    @Bean
+    public DefaultWebSecurityExpressionHandler userSecurityExpressionHandler(){
+        DefaultWebSecurityExpressionHandler handler = new DefaultWebSecurityExpressionHandler();
+        handler.setPermissionEvaluator(new UserPermissionEvaluator());
+        return handler;
+    }
 
     /**
      * 配置登录验证逻辑
@@ -119,11 +120,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 // 取消跨站请求伪造防护
                 .csrf().disable();
-//        // 基于Token不需要session
-//        http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-//        // 禁用缓存
-//        http.headers().cacheControl();
-//        // 添加JWT过滤器
-//        http.addFilter(new JWTAuthenticationTokenFilter(authenticationManager()));
+        // 基于Token不需要session
+        http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+        // 禁用缓存
+        http.headers().cacheControl();
+        // 添加JWT过滤器
+        http.addFilter(new JWTAuthenticationTokenFilter(authenticationManager()));
     }
 }

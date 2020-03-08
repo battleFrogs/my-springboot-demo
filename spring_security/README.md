@@ -29,7 +29,9 @@
       |     |     ├── UserLoginFailureHandler   登录失败处理类
       |     |     ├── UserLoginSuccessHandler   登陆成功处理类
       |     |     └── UserLogoutSuccessHandler  用户注销处理类
-      |     |
+      |     ├── filter 
+      |     |     └── JWTAuthenticationTokenFilter 每次请求的jwt的权限校验
+      |     | 
       |     ├── SecurityConfig  springSecurity 核心配置
       |     ├── UserAuthenticationProvider 自定义登录验证类
       |     └── UserPermissionEvaluator   自定义权限注解验证
@@ -65,7 +67,7 @@
 ### 测试  
 
 1.注册账号,访问 localhost:8080/register/userRegister ,传递username和password    
-2.登录 访问 localhost:8080/login/userLogin ,post请求并传递 username和password   
-2-1 登录成功后， 访问接口将不再拦截
-3.注销账号 访问 localhost:8080/login/userLogout
+2.登录 访问 localhost:8080/login/userLogin ,post请求并传递 username和password ,此时会返回token值。    
+2-1 登录成功后， 访问接口将通过拦截器，header上添加Authorization的token值，然后就顺利进去   
+3.注销账号 访问 localhost:8080/login/userLogout   
 4.访问权限接口 localhost:8080/authText/* 

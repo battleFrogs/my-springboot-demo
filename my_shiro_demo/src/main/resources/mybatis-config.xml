@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <settings>
+        <setting name="callSettersOnNulls" value="true"/>
+
+        <setting name="cacheEnabled" value="true"/><!-- 所有映射器中配置的缓存的全局开关 -->
+
+        <setting name="lazyLoadingEnabled" value="true"/><!-- 延迟加载的全局开关，当开启时，所有关联对象都会延迟加载，特定关联关系中可以通过
+     设置fetchType属性来覆盖该项的开关的状态-->
+
+        <setting name="aggressiveLazyLoading" value="true"/><!-- 当启用时，带有延迟加载属性的对象的加载与否完全取决与对任意延迟属性的调用；反之每种属性将按需加载 -->
+
+        <setting name="multipleResultSetsEnabled" value="true"/> <!-- 是否开启自动驼峰命名规则映射 -->
+
+        <setting name="useColumnLabel" value="true"/>
+
+        <setting name="useGeneratedKeys" value="false"/>
+
+        <setting name="autoMappingBehavior" value="PARTIAL"/>
+
+        <setting name="defaultExecutorType" value="SIMPLE"/>
+
+        <setting name="mapUnderscoreToCamelCase" value="true"/>
+
+        <setting name="localCacheScope" value="SESSION"/>
+
+        <setting name="jdbcTypeForNull" value="NULL"/>
+
+    </settings>
+
+    <typeAliases>
+        <typeAlias alias="Integer" type="java.lang.Integer" />
+        <typeAlias alias="Long" type="java.lang.Long" />
+        <typeAlias alias="HashMap" type="java.util.HashMap" />
+        <typeAlias alias="LinkedHashMap" type="java.util.LinkedHashMap" />
+        <typeAlias alias="ArrayList" type="java.util.ArrayList" />
+        <typeAlias alias="LinkedList" type="java.util.LinkedList" />
+    </typeAliases>
+</configuration>

@@ -55,11 +55,16 @@ public class ShiroConfig {
         Map<String, String> filterChainDefinitionMap = new LinkedHashMap<>();
         // 注意过滤器配置顺序不能颠倒
         // 配置过滤:不会被拦截的链接
-        filterChainDefinitionMap.put("/static/**", "anon");
-        filterChainDefinitionMap.put("/userLogin/**", "anon");
+        // anon ： 无参，开放权限，可以理解为匿名用户或游客
+        // authc： 无参，需要认证
+        // user ： 无参，表示必须存在用户，当登入操作时不做检查
+        // perms[user] :  参数可写多个，表示需要某个或某些权限才能通过，多个参数时写 perms["user, admin"]，当有多个参数时必须每个参数都通过才算通过
+        // roles[admin] : 参数可写多个，表示是某个或某些角色才能通过，多个参数时写 roles["admin, user"]，当有多个参数时必须每个参数都通过才算通过
+//        filterChainDefinitionMap.put("/static/**", "anon");
+        filterChainDefinitionMap.put("/login/**", "anon");
         filterChainDefinitionMap.put("/**", "authc");
         // 配置shiro默认登录界面地址，前后端分离中登录界面跳转应由前端路由控制，后台仅返回json数据
-        shiroFilterFactoryBean.setLoginUrl("/userLogin/unauth");
+        shiroFilterFactoryBean.setLoginUrl("/login/noLogin");
         shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);
         return shiroFilterFactoryBean;
     }
@@ -71,9 +76,9 @@ public class ShiroConfig {
     public SecurityManager securityManager() {
         DefaultWebSecurityManager securityManager = new DefaultWebSecurityManager();
         // 自定义Ssession管理
-        securityManager.setSessionManager(sessionManager());
+//        securityManager.setSessionManager(sessionManager());
         // 自定义Cache实现
-        securityManager.setCacheManager(cacheManager());
+//        securityManager.setCacheManager(cacheManager());
         // 自定义Realm验证
         securityManager.setRealm(shiroRealm());
         return securityManager;
@@ -106,60 +111,60 @@ public class ShiroConfig {
     /**
      * 配置Redis管理器
      */
-    @Bean
-    public RedisManager redisManager() {
-        RedisManager redisManager = new RedisManager();
-        redisManager.setHost(host);
-        redisManager.setPort(port);
-        redisManager.setTimeout(timeout);
-        redisManager.setPassword(password);
-        return redisManager;
-    }
+//    @Bean
+//    public RedisManager redisManager() {
+//        RedisManager redisManager = new RedisManager();
+//        redisManager.setHost(host);
+//        redisManager.setPort(port);
+//        redisManager.setTimeout(timeout);
+//        redisManager.setPassword(password);
+//        return redisManager;
+//    }
 
     /**
      * 配置Cache管理器
      * 用于往Redis存储权限和角色标识
      */
-    @Bean
-    public RedisCacheManager cacheManager() {
-        RedisCacheManager redisCacheManager = new RedisCacheManager();
-        redisCacheManager.setRedisManager(redisManager());
-        redisCacheManager.setKeyPrefix(CACHE_KEY);
-        // 配置缓存的话要求放在session里面的实体类必须有个id标识
-        redisCacheManager.setPrincipalIdFieldName("userId");
-        return redisCacheManager;
-    }
+//    @Bean
+//    public RedisCacheManager cacheManager() {
+//        RedisCacheManager redisCacheManager = new RedisCacheManager();
+//        redisCacheManager.setRedisManager(redisManager());
+//        redisCacheManager.setKeyPrefix(CACHE_KEY);
+//        // 配置缓存的话要求放在session里面的实体类必须有个id标识
+//        redisCacheManager.setPrincipalIdFieldName("userId");
+//        return redisCacheManager;
+//    }
 
     /**
      * SessionID生成器
      */
-    @Bean
-    public ShiroSessionIdGenerator sessionIdGenerator(){
-        return new ShiroSessionIdGenerator();
-    }
+//    @Bean
+//    public ShiroSessionIdGenerator sessionIdGenerator(){
+//        return new ShiroSessionIdGenerator();
+//    }
 
     /**
      * 配置RedisSessionDAO
      */
-    @Bean
-    public RedisSessionDAO redisSessionDAO() {
-        RedisSessionDAO redisSessionDAO = new RedisSessionDAO();
-        redisSessionDAO.setRedisManager(redisManager());
-        redisSessionDAO.setSessionIdGenerator(sessionIdGenerator());
-        redisSessionDAO.setKeyPrefix(SESSION_KEY);
-        redisSessionDAO.setExpire(EXPIRE);
-        return redisSessionDAO;
-    }
+//    @Bean
+//    public RedisSessionDAO redisSessionDAO() {
+//        RedisSessionDAO redisSessionDAO = new RedisSessionDAO();
+//        redisSessionDAO.setRedisManager(redisManager());
+//        redisSessionDAO.setSessionIdGenerator(sessionIdGenerator());
+//        redisSessionDAO.setKeyPrefix(SESSION_KEY);
+//        redisSessionDAO.setExpire(EXPIRE);
+//        return redisSessionDAO;
+//    }
 
     /**
      * 配置Session管理器
      */
-    @Bean
-    public SessionManager sessionManager() {
-        ShiroSessionManager shiroSessionManager = new ShiroSessionManager();
-        shiroSessionManager.setSessionDAO(redisSessionDAO());
-        return shiroSessionManager;
-    }
+//    @Bean
+//    public SessionManager sessionManager() {
+//        ShiroSessionManager shiroSessionManager = new ShiroSessionManager();
+//        shiroSessionManager.setSessionDAO(redisSessionDAO());
+//        return shiroSessionManager;
+//    }
 
 
 }

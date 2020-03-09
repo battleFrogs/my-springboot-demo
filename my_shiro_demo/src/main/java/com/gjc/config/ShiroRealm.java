@@ -84,7 +84,7 @@ public class ShiroRealm extends AuthorizingRealm {
                 getName()
         );
         //验证成功开始踢人(清除缓存和Session)
-        ShiroUtils.deleteCache(username,true);
+//        ShiroUtils.deleteCache(username,true);
         return authenticationInfo;
     }
 

@@ -61,6 +61,7 @@ public class ShiroConfig {
         // perms[user] :  参数可写多个，表示需要某个或某些权限才能通过，多个参数时写 perms["user, admin"]，当有多个参数时必须每个参数都通过才算通过
         // roles[admin] : 参数可写多个，表示是某个或某些角色才能通过，多个参数时写 roles["admin, user"]，当有多个参数时必须每个参数都通过才算通过
 //        filterChainDefinitionMap.put("/static/**", "anon");
+        filterChainDefinitionMap.put("/register/**", "anon");
         filterChainDefinitionMap.put("/login/**", "anon");
         filterChainDefinitionMap.put("/**", "authc");
         // 配置shiro默认登录界面地址，前后端分离中登录界面跳转应由前端路由控制，后台仅返回json数据
@@ -101,10 +102,12 @@ public class ShiroConfig {
     @Bean
     public HashedCredentialsMatcher hashedCredentialsMatcher() {
         HashedCredentialsMatcher shaCredentialsMatcher = new HashedCredentialsMatcher();
-        // 散列算法:这里使用SHA256算法;
-        shaCredentialsMatcher.setHashAlgorithmName(SHA256Util.HASH_ALGORITHM_NAME);
-        // 散列的次数，比如散列两次，相当于 md5(md5(""));
-        shaCredentialsMatcher.setHashIterations(SHA256Util.HASH_ITERATIONS);
+//        // 散列算法:这里使用SHA256算法;
+//        shaCredentialsMatcher.setHashAlgorithmName(SHA256Util.HASH_ALGORITHM_NAME);
+//        // 散列的次数，比如散列两次，相当于 md5(md5(""));
+//        shaCredentialsMatcher.setHashIterations(SHA256Util.HASH_ITERATIONS);
+        shaCredentialsMatcher.setHashAlgorithmName("md5");
+        shaCredentialsMatcher.setHashIterations(2);
         return shaCredentialsMatcher;
     }
 

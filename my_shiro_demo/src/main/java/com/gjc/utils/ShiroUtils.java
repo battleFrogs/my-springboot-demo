@@ -48,7 +48,7 @@ public class ShiroUtils {
      * @Return SysUserEntity 用户信息
      */
     public static UserDO getUserInfo() {
-        return (UserDO) SecurityUtils.getSubject().getPrincipal();
+        return (UserDO) SecurityUtils.getSubject().getPrincipals().getPrimaryPrincipal();
     }
 
     /**

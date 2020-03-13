@@ -8,6 +8,7 @@ import com.gjc.dao.UserRoleRelationMapper;
 import com.gjc.entity.DTO.UserRoleRelationDTO;
 import com.gjc.entity.UserDO;
 import com.gjc.entity.UserRoleDO;
+import com.gjc.utils.ShiroUtils;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.apache.shiro.subject.PrincipalCollection;
@@ -35,8 +36,7 @@ public class UserInfoController {
     @RequestMapping("/getUserInfo")
     public ResultData getUserInfo() {
         ResultData resultData = new ResultData(RetCode.FAIL.getCode(), "");
-        PrincipalCollection principals = SecurityUtils.getSubject().getPrincipals();
-        UserDO userDO = (UserDO) principals.getPrimaryPrincipal();
+        UserDO userDO = ShiroUtils.getUserInfo();
         Integer userId = userDO.getUserId();
         UserRoleRelationDTO userRoleRelationDTO = userRoleRelationMapper.getUserInfo(userId);
         resultData.setCode(RetCode.SUCCESS.getCode());

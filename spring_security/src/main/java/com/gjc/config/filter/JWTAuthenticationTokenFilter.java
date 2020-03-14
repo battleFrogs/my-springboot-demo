@@ -11,6 +11,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -72,6 +73,9 @@ public class JWTAuthenticationTokenFilter extends BasicAuthenticationFilter {
                     selfUserEntity.setAuthorities(authorities);
                     UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(selfUserEntity, userId, authorities);
                     SecurityContextHolder.getContext().setAuthentication(authentication);
+                    // 后期获取用户信息
+//                    Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+//                    String currentPrincipalName = authentication.getName();
                 }
             } catch (ExpiredJwtException e){
                 log.info("Token过期");

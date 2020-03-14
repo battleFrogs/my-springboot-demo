@@ -30,7 +30,6 @@ public class LoginController {
         Subject subject = SecurityUtils.getSubject();
         UsernamePasswordToken token = new UsernamePasswordToken(userDO.getUsername(), userDO.getPassword());
         subject.login(token); // 走身份认证接口
-
         resultData.setMsg("登录成功");
         resultData.setCode(RetCode.SUCCESS.getCode());
         return resultData;
@@ -47,9 +46,6 @@ public class LoginController {
 
     /**
      * 登出(测试登出)
-     * @Author Sans
-     * @CreateTime 2019/6/19 10:38
-     * @Return Map<String,Object> 返回结果
      */
     @RequestMapping("/getLogout")
     @RequiresUser

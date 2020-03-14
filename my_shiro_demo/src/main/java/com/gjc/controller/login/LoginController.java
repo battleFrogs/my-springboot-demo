@@ -9,6 +9,7 @@ import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.LockedAccountException;
 import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.authz.annotation.RequiresUser;
 import org.apache.shiro.subject.Subject;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,25 +25,12 @@ public class LoginController {
      * @return
      */
     @RequestMapping("/userLogin")
-    public ResultData userLogin(@RequestBody UserDO userDO) {
+    public ResultData userLogin(UserDO userDO) {
         ResultData resultData = new ResultData(RetCode.FAIL.getCode(), "");
-        try {
-            Subject subject = SecurityUtils.getSubject();
-            UsernamePasswordToken token = new UsernamePasswordToken(userDO.getUsername(), userDO.getPassword());
-            subject.login(token); // 走身份认证接口
-        } catch (IncorrectCredentialsException e) {
-            resultData.setMsg("用户不存在或者密码错误");
-            return resultData;
-        } catch (LockedAccountException e) {
-            resultData.setMsg("登录失败，该用户已被冻结");
-            return resultData;
-        } catch (AuthenticationException e) {
-            resultData.setMsg("该用户不存在");
-            return resultData;
-        } catch (Exception e) {
-            resultData.setMsg("用户不存在或者密码错误");
-            return resultData;
-        }
+        Subject subject = SecurityUtils.getSubject();
+        UsernamePasswordToken token = new UsernamePasswordToken(userDO.getUsername(), userDO.getPassword());
+        subject.login(token); // 走身份认证接口
+
         resultData.setMsg("登录成功");
         resultData.setCode(RetCode.SUCCESS.getCode());
         return resultData;
@@ -55,5 +43,20 @@ public class LoginController {
     public ResultData noLogin() {
         return new ResultData(RetCode.FAIL.getCode(), "未登录");
     }
+
+
+    /**
+     * 登出(测试登出)
+     * @Author Sans
+     * @CreateTime 2019/6/19 10:38
+     * @Return Map<String,Object> 返回结果
+     */
+    @RequestMapping("/getLogout")
+    @RequiresUser
+    public ResultData getLogout(){
+        ShiroUtils.logout();
+        return new ResultData(RetCode.SUCCESS.getCode(), "登出成功");
+    }
+
 
 }

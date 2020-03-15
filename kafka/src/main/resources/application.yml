@@ -1,0 +1,23 @@
+server:
+  port: 8081
+
+spring:
+  kafka:
+    bootstrap-servers: 192.168.73.128:9092 # kafka代理地址
+    producer:
+      retries: 0  #消息发送失败重试次数
+      batch-size: 16384  # 每次批量发送消息的数量
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+
+
+# 消费者
+
+    consumer:
+      group-id: user-log-group
+      auto-offset-reset: earliest
+      enable-auto-commit: true
+      auto-commit-interval: 100
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+

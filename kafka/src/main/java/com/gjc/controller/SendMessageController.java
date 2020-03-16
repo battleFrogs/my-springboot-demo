@@ -2,7 +2,7 @@ package com.gjc.controller;
 
 import com.gjc.constant.ResultData;
 import com.gjc.constant.RetCode;
-import com.gjc.produce.UserLogProducer;
+import com.gjc.produce.one.UserLogProducer;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -10,12 +10,17 @@ import javax.annotation.Resource;
 
 @RestController
 @RequestMapping("/sendMessage")
-public class sendMessageController {
+public class SendMessageController {
 
 
     @Resource
     private UserLogProducer userLogProducer;
 
+    /**
+     * 点对点模式
+     * @param userId
+     * @return
+     */
     @RequestMapping("/sendToTest")
     public ResultData sendToTest(String userId) {
 

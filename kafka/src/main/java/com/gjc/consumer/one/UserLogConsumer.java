@@ -1,4 +1,4 @@
-package com.gjc.consumer;
+package com.gjc.consumer.one;
 
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.springframework.kafka.annotation.KafkaListener;

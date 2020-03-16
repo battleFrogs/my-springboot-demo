@@ -1,4 +1,4 @@
-package com.gjc.produce;
+package com.gjc.produce.one;
 
 import com.alibaba.fastjson.JSONObject;
 import com.gjc.entity.UserLog;
@@ -15,6 +15,10 @@ public class UserLogProducer {
     @Autowired
     private KafkaTemplate kafkaTemplate;
 
+    /**
+     * 点对点接收
+     * @param userId
+     */
     public void sendLog(String userId) {
 
         UserLog userLog = new UserLog();

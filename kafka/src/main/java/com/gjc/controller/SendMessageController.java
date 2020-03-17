@@ -23,7 +23,6 @@ public class SendMessageController {
      */
     @RequestMapping("/sendToTest")
     public ResultData sendToTest(String userId) {
-
         ResultData resultData = new ResultData(RetCode.FAIL.getCode(), "");
         userLogProducer.sendLog(userId);
         resultData.setMsg("发送成功");

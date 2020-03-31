@@ -14,7 +14,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 public class WebCustomConfiguration implements WebMvcConfigurer {
 
 
-    // 配置跨域（这个会导致，走完拦截器还会走这边）
+    // 配置跨域（这个会导致，走完拦截器还会走这边）第一种
     //    @Override
 //    public void addCorsMappings(CorsRegistry registry) {
 //        registry.addMapping("/**")
@@ -28,7 +28,7 @@ public class WebCustomConfiguration implements WebMvcConfigurer {
 //
 //    }
 
-
+    // 第二种
     // 因为上面那个方法拦截器会导致跨域失效（让请求先走filter，优先于拦截器执行），单独自定义配置filter进行跨域
     @Bean
     public CorsFilter corsFilter() {

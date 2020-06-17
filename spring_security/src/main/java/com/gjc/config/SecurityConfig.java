@@ -1,5 +1,6 @@
 package com.gjc.config;
 
+import com.gjc.config.filter.CodeAuthenticationFilter;
 import com.gjc.config.filter.JWTAuthenticationTokenFilter;
 import com.gjc.config.handler.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.access.expression.DefaultWebSecurityExpressionHandler;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 /**
  * SpringSecurity配置类
@@ -87,7 +89,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
      */
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests()
+        http
+                .addFilterBefore(new CodeAuthenticationFilter("/login/userLogin"), UsernamePasswordAuthenticationFilter.class)
+                .authorizeRequests()
                 // 不进行权限验证的请求或资源(从配置文件中读取)
 //                .antMatchers(JWTConfig.antMatchers.split(",")).permitAll()
                 .antMatchers("/login/*").permitAll()

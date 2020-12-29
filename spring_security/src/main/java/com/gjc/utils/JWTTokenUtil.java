@@ -13,16 +13,17 @@ public class JWTTokenUtil {
     /**
      * 私有化构造器
      */
-    private JWTTokenUtil(){}
+    private JWTTokenUtil() {
+    }
 
     /**
      * 生成Token
      */
-    public static String createAccessToken(SelfUserEntity selfUserEntity){
+    public static String createAccessToken(SelfUserEntity selfUserEntity) {
         // 登陆成功生成JWT
         String token = Jwts.builder()
                 // 放入用户名和用户ID
-                .setId(selfUserEntity.getUserId()+"")
+                .setId(selfUserEntity.getUserId() + "")
                 // 主题
                 .setSubject(selfUserEntity.getUsername())
                 // 签发时间

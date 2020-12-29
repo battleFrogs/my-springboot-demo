@@ -2,7 +2,12 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/my-springboot-demo.iml" filepath="$PROJECT_DIR$/.idea/my-springboot-demo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/http/http.iml" filepath="$PROJECT_DIR$/http/http.iml" />
+      <module fileurl="file://$PROJECT_DIR$/interceptor/interceptor.iml" filepath="$PROJECT_DIR$/interceptor/interceptor.iml" />
+      <module fileurl="file://$PROJECT_DIR$/kafka/kafka.iml" filepath="$PROJECT_DIR$/kafka/kafka.iml" />
+      <module fileurl="file://$PROJECT_DIR$/my-springboot-demo.iml" filepath="$PROJECT_DIR$/my-springboot-demo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/my_shiro_demo/my_shiro_demo.iml" filepath="$PROJECT_DIR$/my_shiro_demo/my_shiro_demo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/spring_security/spring_security.iml" filepath="$PROJECT_DIR$/spring_security/spring_security.iml" />
     </modules>
   </component>
 </project>

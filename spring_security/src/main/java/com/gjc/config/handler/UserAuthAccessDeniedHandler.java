@@ -14,7 +14,7 @@ public class UserAuthAccessDeniedHandler implements AccessDeniedHandler {
      * 暂无权限返回结果
      */
     @Override
-    public void handle(HttpServletRequest request, HttpServletResponse response, AccessDeniedException exception){
-        ResultUtils.responseJson(response,ResultUtils.resultCode(403,"未授权"));
+    public void handle(HttpServletRequest request, HttpServletResponse response, AccessDeniedException exception) {
+        ResultUtils.responseJson(response, ResultUtils.resultCode(403, "未授权"));
     }
 }

@@ -4,9 +4,9 @@
 
     <!-- 通用查询映射结果 -->
     <resultMap id="BaseResultMap" type="com.gjc.entity.RoleAuthDO">
-        <id column="role_auth_id" property="roleAuthId" />
-        <result column="role_id" property="roleId" />
-        <result column="auth_id" property="authId" />
+        <id column="role_auth_id" property="roleAuthId"/>
+        <result column="role_id" property="roleId"/>
+        <result column="auth_id" property="authId"/>
     </resultMap>
 
     <!-- 通用查询结果列 -->

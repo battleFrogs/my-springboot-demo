@@ -42,7 +42,7 @@ public class JWTAuthenticationTokenFilter extends BasicAuthenticationFilter {
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         // 获取请求头中JWT的Token
         String tokenHeader = request.getHeader(JWTConfig.tokenHeader);
-        if (null!=tokenHeader && tokenHeader.startsWith(JWTConfig.tokenPrefix)) {
+        if (null != tokenHeader && tokenHeader.startsWith(JWTConfig.tokenPrefix)) {
             try {
                 // 截取JWT前缀
                 String token = tokenHeader.replace(JWTConfig.tokenPrefix, "");
@@ -53,15 +53,15 @@ public class JWTAuthenticationTokenFilter extends BasicAuthenticationFilter {
                         .getBody();
                 // 获取用户名
                 String username = claims.getSubject();
-                String userId=claims.getId();
-                if(!StringUtils.isEmpty(username)&&!StringUtils.isEmpty(userId)) {
+                String userId = claims.getId();
+                if (!StringUtils.isEmpty(username) && !StringUtils.isEmpty(userId)) {
                     // 获取角色
                     List<GrantedAuthority> authorities = new ArrayList<>();
                     String authority = claims.get("authorities").toString();
-                    if(!StringUtils.isEmpty(authority)){
-                        List<Map<String,String>> authorityMap = JSONObject.parseObject(authority, List.class);
-                        for(Map<String,String> role : authorityMap){
-                            if(!role.isEmpty()) {
+                    if (!StringUtils.isEmpty(authority)) {
+                        List<Map<String, String>> authorityMap = JSONObject.parseObject(authority, List.class);
+                        for (Map<String, String> role : authorityMap) {
+                            if (!role.isEmpty()) {
                                 authorities.add(new SimpleGrantedAuthority(role.get("authority")));
                             }
                         }
@@ -77,7 +77,7 @@ public class JWTAuthenticationTokenFilter extends BasicAuthenticationFilter {
 //                    Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 //                    String currentPrincipalName = authentication.getName();
                 }
-            } catch (ExpiredJwtException e){
+            } catch (ExpiredJwtException e) {
                 log.info("Token过期");
             } catch (Exception e) {
                 log.info("Token无效");

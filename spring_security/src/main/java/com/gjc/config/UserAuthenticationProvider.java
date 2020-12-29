@@ -30,7 +30,6 @@ import java.util.Set;
 
 /**
  * 自定义登录验证
- *
  */
 @Component
 public class UserAuthenticationProvider implements AuthenticationProvider {

@@ -27,12 +27,12 @@ public class CodeAuthenticationFilter extends AbstractAuthenticationProcessingFi
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
         HttpServletRequest req = (HttpServletRequest) request;
-        HttpServletResponse res=(HttpServletResponse)response;
-        if(processUrl.equals(req.getServletPath()) && "POST".equalsIgnoreCase(req.getMethod())){
+        HttpServletResponse res = (HttpServletResponse) response;
+        if (processUrl.equals(req.getServletPath()) && "POST".equalsIgnoreCase(req.getMethod())) {
             //获取表单的学校id参数
             Integer code = Integer.valueOf(req.getParameter("code"));
             //将学校id存入session
-            req.getSession().setAttribute("code",code);
+            req.getSession().setAttribute("code", code);
         }
         chain.doFilter(request, response);
     }

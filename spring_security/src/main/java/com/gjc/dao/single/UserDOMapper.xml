@@ -4,10 +4,10 @@
 
     <!-- 通用查询映射结果 -->
     <resultMap id="BaseResultMap" type="com.gjc.entity.UserDO">
-        <id column="user_id" property="userId" />
-        <result column="username" property="username" />
-        <result column="password" property="password" />
-        <result column="user_status" property="userStatus" />
+        <id column="user_id" property="userId"/>
+        <result column="username" property="username"/>
+        <result column="password" property="password"/>
+        <result column="user_status" property="userStatus"/>
     </resultMap>
 
     <!-- 通用查询结果列 -->

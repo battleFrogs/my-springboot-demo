@@ -101,14 +101,17 @@ public class SelfUserEntity implements Serializable, UserDetails {
     public boolean isAccountNonExpired() {
         return isAccountNonExpired;
     }
+
     @Override
     public boolean isAccountNonLocked() {
         return isAccountNonLocked;
     }
+
     @Override
     public boolean isCredentialsNonExpired() {
         return isCredentialsNonExpired;
     }
+
     @Override
     public boolean isEnabled() {
         return isEnabled;

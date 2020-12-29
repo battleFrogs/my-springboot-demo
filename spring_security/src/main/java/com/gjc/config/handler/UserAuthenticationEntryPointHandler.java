@@ -17,7 +17,7 @@ public class UserAuthenticationEntryPointHandler implements AuthenticationEntryP
      * 用户未登录返回结果
      */
     @Override
-    public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException exception){
-        ResultUtils.responseJson(response,ResultUtils.resultCode(401,"未登录"));
+    public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException exception) {
+        ResultUtils.responseJson(response, ResultUtils.resultCode(401, "未登录"));
     }
 }

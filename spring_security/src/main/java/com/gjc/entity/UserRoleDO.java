@@ -3,11 +3,12 @@ package com.gjc.entity;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
+
 import java.io.Serializable;
 
 /**
  * <p>
- * 
+ *
  * </p>
  *
  * @author gjc
@@ -41,6 +42,7 @@ public class UserRoleDO implements Serializable {
     public void setUserRoleId(Integer userRoleId) {
         this.userRoleId = userRoleId;
     }
+
     public Integer getUserId() {
         return userId;
     }
@@ -48,6 +50,7 @@ public class UserRoleDO implements Serializable {
     public void setUserId(Integer userId) {
         this.userId = userId;
     }
+
     public Integer getRoleId() {
         return roleId;
     }
@@ -59,9 +62,9 @@ public class UserRoleDO implements Serializable {
     @Override
     public String toString() {
         return "UserRoleDO{" +
-            "userRoleId=" + userRoleId +
-            ", userId=" + userId +
-            ", roleId=" + roleId +
-        "}";
+                "userRoleId=" + userRoleId +
+                ", userId=" + userId +
+                ", roleId=" + roleId +
+                "}";
     }
 }

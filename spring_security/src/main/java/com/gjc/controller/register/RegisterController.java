@@ -20,6 +20,7 @@ public class RegisterController {
 
     /**
      * 用户注册
+     *
      * @param username 账号
      * @param password 密码
      * @return resultData

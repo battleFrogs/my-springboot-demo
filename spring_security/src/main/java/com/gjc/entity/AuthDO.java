@@ -3,11 +3,12 @@ package com.gjc.entity;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
+
 import java.io.Serializable;
 
 /**
  * <p>
- * 
+ *
  * </p>
  *
  * @author gjc
@@ -41,6 +42,7 @@ public class AuthDO implements Serializable {
     public void setAuthId(Integer authId) {
         this.authId = authId;
     }
+
     public String getName() {
         return name;
     }
@@ -48,6 +50,7 @@ public class AuthDO implements Serializable {
     public void setName(String name) {
         this.name = name;
     }
+
     public String getPermission() {
         return permission;
     }
@@ -59,9 +62,9 @@ public class AuthDO implements Serializable {
     @Override
     public String toString() {
         return "AuthDO{" +
-            "authId=" + authId +
-            ", name=" + name +
-            ", permission=" + permission +
-        "}";
+                "authId=" + authId +
+                ", name=" + name +
+                ", permission=" + permission +
+                "}";
     }
 }
